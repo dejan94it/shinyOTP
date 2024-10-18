@@ -1,0 +1,21 @@
+Package: shinyOTP
+Type: Package
+Title: Shiny Module for OTP (One-Time Password) Authentication
+Version: 0.1.0
+Authors@R: 
+    person(given = "Giuseppe Dejan", 
+           family = "Lucido", 
+           role = c("aut", "cre"), 
+           email = "dejanlucdo@gmail.com")
+Maintainer: Giuseppe Dejan Lucido <dejanlucdo@gmail.com>
+Description: Provides UI and server modules for implementing One-Time Password (OTP) 
+    authentication in Shiny applications. It allows sending OTP via email and verifying
+    the OTP within the app, making it easy to integrate basic authentication into Shiny apps.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    shiny (>= 1.6.0),
+    blastula,
+    glue
+RoxygenNote: 7.2.0
