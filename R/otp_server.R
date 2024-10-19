@@ -50,20 +50,16 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
   moduleServer(id, function(input, output, session) {
     ns <- session$ns
 
-    # Store OTP in reactiveVal for later verification
     otp_sent <- reactiveVal(NULL)
     otp_timestamp <- reactiveVal(NULL)
 
-    # Reactive values for feedback messages
     email_feedback <- reactiveVal("")
     otp_feedback <- reactiveVal("")
 
-    # Regex for email validation
     email_valid <- reactive({
       grepl("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", input$email)
     })
 
-    # Generate random 6-digit OTP
     generate_otp <- function() {
       sprintf("%06d", sample(0:999999, 1))
     }
@@ -75,7 +71,6 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
         otp_timestamp(Sys.time())  # Store timestamp
         email <- input$email
 
-        # Send email using blastula
         tryCatch({
           blastula::smtp_send(
             email = blastula::compose_email(
@@ -94,17 +89,15 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
             )
           )
 
-          # Update email feedback message
           email_feedback("<span style='color: green;'>OTP has been sent to your email.</span>")
 
-          #this block is not working and I don't understand why
-          # updateActionButton(session, ns("send"),  label = "Please wait...", disabled = TRUE)
-          # updateTextInput(session, ns("otp"), value = "")
-          # later::later(
-          #   function() {
-          #     updateActionButton(session, ns("send"), label = "Send", disabled = FALSE)
-          #   }, delay = 10
-          # )
+          updateActionButton(session, "send",  label = "Please wait...", disabled = TRUE)
+          updateTextInput(session, "otp", value = "")
+          later::later(
+            function() {
+              updateActionButton(session, "send", label = "Send", disabled = FALSE)
+            }, delay = 30
+          )
 
         }, error = function(e) {
           email_feedback("<span style='color: red;'>Failed to send OTP. Please try again later.</span>")
@@ -115,7 +108,6 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
     })
 
 
-    # Observe the 'Verify' button click to check if the entered OTP matches
     verified <- reactiveVal(FALSE)
     observeEvent(input$verify, {
       # Check if OTP is within valid timeframe (e.g., 5 minutes)
@@ -128,7 +120,6 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
       }
     })
 
-    # Render feedback messages in UI
     output$email_feedback <- renderUI({ HTML(email_feedback()) })
     output$otp_feedback <- renderUI({ HTML(otp_feedback()) })
 
