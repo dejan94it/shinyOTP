@@ -96,15 +96,16 @@ otp_server <- function(id, smtp_email_envvar, smtp_password_envvar, smtp_host, s
 
           # Update email feedback message
           email_feedback("<span style='color: green;'>OTP has been sent to your email.</span>")
-          updateActionButton(session, ns("send"), disabled = TRUE) #this is not working
-          updateTextInput(session, ns("otp"), value = "")
 
-          # Re-enable 'Send' button after a delay (e.g., 60 seconds)
+          #this block is not working and I don't understand why
+          # updateActionButton(session, ns("send"),  label = "Please wait...", disabled = TRUE)
+          # updateTextInput(session, ns("otp"), value = "")
           # later::later(
           #   function() {
-          #     updateActionButton(session, ns("send"), disabled = FALSE)
+          #     updateActionButton(session, ns("send"), label = "Send", disabled = FALSE)
           #   }, delay = 10
           # )
+
         }, error = function(e) {
           email_feedback("<span style='color: red;'>Failed to send OTP. Please try again later.</span>")
         })
