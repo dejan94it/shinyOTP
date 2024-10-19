@@ -10,7 +10,7 @@ You can install the development version from GitHub:
 # Install devtools if necessary
 # install.packages("devtools")
 
-devtools::install_github("yourgithubusername/shinyOTP")
+devtools::install_github("dejan94it/shinyOTP")
 ```
 
 
