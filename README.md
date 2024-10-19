@@ -1,4 +1,4 @@
-# shinyOTP
+# shinyOTP cc_Rtools <img src="hex_logo.png" align="right" width="220" height="220" />
 
 `shinyOTP` is an R package that provides Shiny modules to easily implement One-Time Password (OTP) authentication in your Shiny applications.
 
