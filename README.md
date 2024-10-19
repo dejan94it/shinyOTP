@@ -19,6 +19,7 @@ Here is a minimal Shiny App:
 
 ```r
 library(shiny)
+library(shinyOTP)
 
 Sys.setenv(SMTP_EMAIL = "youremail")
 Sys.setenv(SMTP_PASSWORD = "yourpassword")
