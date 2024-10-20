@@ -1,8 +1,8 @@
-# shinyOTP <img src="hex_logo.png" align="right" width="232" height="269" />
+# shinyOTP 
 
 `shinyOTP` is an R package that provides Shiny modules to easily implement One-Time Password (OTP) authentication in your Shiny applications.
 
-## Installation
+## Installation <img src="hex_logo.png" align="right" width="164" height="201" />
 
 At the moment you can install only this version from GitHub:
 
