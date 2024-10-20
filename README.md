@@ -25,11 +25,12 @@ Sys.setenv(SMTP_EMAIL = "youremail")
 Sys.setenv(SMTP_PASSWORD = "yourpassword")
 
 ui <- fluidPage(
-  otp_ui("otp_module") 
+  fluidRow(otp_ui("otp_module")),
+  fluidRow(htmlOutput("do_something"))
 )
 
 server <- function(input, output, session) {
-  otp_server(
+  is_verified <- otp_server(
     "otp_module",              
     smtp_email = "SMTP_EMAIL",      
     smtp_password = "SMTP_PASSWORD",
@@ -37,6 +38,14 @@ server <- function(input, output, session) {
     smtp_port = 465,                            
     ssl = TRUE                                 
   )
+  
+  output$do_something <- renderUI({
+    if(TRUE){ 
+      return(h2("Do Something when verified!")) 
+    } else {
+      return(NULL)
+    } 
+  })
 }
 
 shinyApp(ui, server)
