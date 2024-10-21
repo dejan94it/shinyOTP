@@ -1,4 +1,4 @@
-# shinyOTP <img src="hex_logo.png" align="right" width="112" height="138" /> 
+# shinyOTP <img src="assets/hex_logo.png" align="right" width="112" height="138" /> 
 
 `shinyOTP` is an R package that provides Shiny modules to easily implement 
 One-Time Password (OTP) authentication in your Shiny applications. 
@@ -44,7 +44,7 @@ server <- function(input, output, session) {
   
   output$do_something <- renderUI({
     if(is_verified()){ 
-      return(h2("Do Something when verified!")) 
+      return(h2("Do something when verified!")) 
     } else {
       return(NULL)
     } 
@@ -54,4 +54,4 @@ server <- function(input, output, session) {
 shinyApp(ui, server)
 
 ```
-
+<img src="assets/example_gif.gif" align="center" width="672" height="480" /> 
