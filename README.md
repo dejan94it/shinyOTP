@@ -39,7 +39,7 @@ server <- function(input, output, session) {
     smtp_password = "SMTP_PASSWORD",
     smtp_host = "yoursmtphost",  #example: smtp.gmail.com      
     smtp_port = 465,  #search the port number of your smtp host                         
-    ssl = TRUE,  #paired with port usually                            
+    ssl = TRUE,  #paired with host and port usually                            
   )
   
   output$do_something <- renderUI({
