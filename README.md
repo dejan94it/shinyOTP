@@ -37,9 +37,9 @@ server <- function(input, output, session) {
     "otp_module",              
     smtp_email = "SMTP_EMAIL",      
     smtp_password = "SMTP_PASSWORD",
-    smtp_host = "smtps.aruba.it",        
-    smtp_port = 465,                            
-    ssl = TRUE                                 
+    smtp_host = "yoursmtphost",  #example: smtp.gmail.com      
+    smtp_port = 465,  #search the port number of your smtp host                         
+    ssl = TRUE,  #paired with port usually                            
   )
   
   output$do_something <- renderUI({
